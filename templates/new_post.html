@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+New post
+{% endblock %}
+
+{% block header %}
+New Post
+{% endblock %}
+
+{% block content %}
+<form method="post" action="/add_message">
+          <input type="text" name="text">
+          <br>
+          <input type="text" name="tag">
+          <br>
+          <button type="submit">Add post</button>
+</form>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
