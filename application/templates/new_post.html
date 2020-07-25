@@ -29,7 +29,9 @@ New Post
 
 {% block content %}
 <form method="post" action="/add_article">
-          <input type="text" name="text">
+          <input type="text" name="title" id="title" placeholder="Name of the article"><br>
+          <textarea name="intro" id="intro" placeholder="Intro of the article"></textarea><br>
+          <textarea id="text" name="text" placeholder="Text of the article"></textarea>
           <br>
           <button type="submit">Add post</button>
 </form>

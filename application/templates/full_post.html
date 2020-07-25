@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}
-UniBlog
-{% endblock %}
 
+{{ article.title }}
+
+{% endblock %}
 
 {% block lg %}
 
@@ -15,7 +16,9 @@ UniBlog
 {% endblock %}
 
 {% block header %}
-Main
+
+{{ article.title }}
+
 {% endblock %}
 
 {% block loged %}
@@ -30,14 +33,13 @@ Main
 
 {% block content %}
 
-<a href="{{ url_for('all_posts') }}">All posts</a>
-<br>
-{% if logged %}
-          <a href="{{ url_for('new_post') }}">New post</a>
-{% endif %}
+<div id='fullpost'>
+          <p>{{ article.text }}</p>
+          <p><b>Date: {{ article.date.date() }}</b></p>
+</div>
 
 {% endblock %}
 
 {% block footer %}
-footer
+
 {% endblock %}

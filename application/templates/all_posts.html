@@ -20,20 +20,32 @@ All posts
 {% block loged %}
 
 {% if logged==True %}
-  Logged
+  Logged - {{ user.login }}
 {% else %}
-  Not Logged
+  Not Logged In
 {% endif %}
 
 {% endblock %}
 
 {% block content %}
-All posts:
-{% for article in articles %}
-<div>
-          {{ article.text }}
-</div>
-{% endfor %}
+
+<h1>All posts:</h1>
+{% if articles|length > 0 %}
+
+          {% for el in articles %}
+          <div id='post'>
+                    <h2>{{ el.title }}</h2>
+                    <p>{{ el.intro }}</p>
+                    <p><b>Date:  {{ el.date.date() }}</b></p>
+                    <a href="/all_posts/{{ el.id }}">Full post</a>
+          </div>
+          {% endfor %}
+{% else %}
+          <div id='noart'>
+                    <p>No articles yet</p>
+          </div>
+{% endif %}
+
 {% endblock %}
 
 {% block footer %}

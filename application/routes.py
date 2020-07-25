@@ -8,27 +8,29 @@ from application.models import Article,User
 
 
 logged = False
+user = None
 
 @app.route('/')
 @app.route('/index')
 def index():
           global logged
 
-          return render_template('index.html',logged=logged)
+          return render_template('index.html',logged=logged, user=user)
 
 
 @app.route('/about')
 def about():
           global logged
 
-          return render_template('about.html',logged=logged)
+          return render_template('about.html',logged=logged, user=user)
 
 
 @app.route('/all_posts')
 def all_posts():
           global logged
 
-          return render_template('all_posts.html',articles=Article.query.all(),logged=logged)
+          articles=Article.query.order_by(Article.date.desc()).all()
+          return render_template('all_posts.html',articles=articles,logged=logged, user=user)
 
 
 @app.route('/new_post')
@@ -36,16 +38,32 @@ def all_posts():
 def new_post():
           global logged
 
-          return render_template('new_post.html',logged=logged)
+          return render_template('new_post.html',logged=logged, user=user)
+
+
+@app.route('/all_posts/<int:id>')
+def full_post(id):
+          global logged
+
+          article=Article.query.get(id)
+          return render_template('full_post.html',logged=logged,article=article, user=user)
 
 
 @app.route('/add_article',methods=['POST'])
 @login_required
 def add_article():
-          text = request.form['text']
+          title=request.form['title']
+          intro=request.form['intro']
+          text=request.form['text']
 
-          db.session.add(Article(text))
-          db.session.commit()
+          article=Article(title=title,intro=intro,text=text)
+
+          try:
+                    db.session.add(article)
+                    db.session.commit()
+                    return redirect('/all_posts')
+          except:
+                    return "There was a mistake"
 
           return redirect(url_for('new_post'))
 
@@ -53,6 +71,7 @@ def add_article():
 @app.route('/login',methods=['GET','POST'])
 def login_page():
           global logged
+          global user
 
           login = request.form.get('login')
           password = request.form.get('password')

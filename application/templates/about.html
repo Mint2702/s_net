@@ -20,9 +20,9 @@ About
 {% block loged %}
 
 {% if logged==True %}
-  Logged
+  Logged - {{ user.login }}
 {% else %}
-  Not Logged
+  Not Logged In
 {% endif %}
 
 {% endblock %}
