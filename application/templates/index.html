@@ -7,11 +7,14 @@ UniBlog
 Main
 {% endblock %}
 
+{% block loged %}
+
+{% endblock %}
+
 {% block content %}
 <a href="{{ url_for('new_post') }}">New post</a>
 <br>
 <a href="{{ url_for('all_posts') }}">All posts</a>
-<br>
 {% endblock %}
 
 {% block footer %}

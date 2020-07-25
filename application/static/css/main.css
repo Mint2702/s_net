@@ -1,0 +1,122 @@
+body,html{
+          background: #c8ccdb;
+          padding: 0;
+          margin: 0;
+}
+
+header{
+          background: #394366;
+          height: 70px;
+          width: 100%;
+          padding: 0 0;
+          border-bottom: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+#content{
+          height:1100px;
+          width: 90%;
+          margin: auto;
+          margin-top: 50px;
+}
+
+footer{
+          margin-bottom: 0;
+          background: #525661;
+          height: 170px;
+          width: 100%;
+          padding: 0 0;
+          border-top: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+#logo{
+          width: 1100px;
+          margin: 0 auto;
+          height: 70px;
+          text-align: center;
+}
+
+#UniBlog{
+          align-items: center;
+          flex-direction: row;
+          display: flex;
+          float: left;
+          height: 70px;
+}
+
+#UniBlog a{
+          padding: 0 10px;
+          line-height: 70px;
+          font-size: 27px;
+          outline: none;
+          text-decoration: none;
+          color: #8eeded;
+          display: block;
+          border-left: 2px solid rgba(0, 0, 0, 0.25);
+          border-right: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+#UniBlog a:hover{
+          background: #747ea3;
+}
+
+
+#About{
+          align-items: center;
+          flex-direction: row;
+          display: flex;
+          float: right;
+          height: 70px;
+}
+
+#About a{    
+          display: block;
+          padding: 0 10px;
+          font-size: 27px;
+          color:#8eeded;
+          line-height: 70px;
+          outline: none;
+          text-decoration: none;
+          border-left: 2px solid rgba(0, 0, 0, 0.25);
+          border-right: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+#About a:hover{
+          background: #747ea3;
+}
+
+
+#title{
+          align-items: center;
+          flex-direction: row;
+          display: flex;
+          height: 70px;
+}
+
+#title h1{    
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          padding: 0 10px;
+          font-size: 26px;
+          color:#8eeded;
+          line-height: 70px;
+}
+
+#log_reg{
+          width: 200px;
+          float: right;
+          height: 70px;
+          align-items: center;
+          display: flex;
+}
+
+#log_reg a{
+          font-size: 20px;
+          color:#8eeded;
+          outline: none;
+          text-decoration: none;
+}
+
+#log_reg a:hover{
+          color:#D80707;
+}

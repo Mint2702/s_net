@@ -7,6 +7,8 @@ from application import db, app
 from application.models import Article,User
 
 
+logged = False
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -19,7 +21,6 @@ def about():
 
 
 @app.route('/all_posts')
-@login_required
 def all_posts():
           return render_template('all_posts.html',articles=Article.query.all())
 
@@ -43,33 +44,40 @@ def add_article():
 
 @app.route('/login',methods=['GET','POST'])
 def login_page():
+          global logged
+
           login = request.form.get('login')
           password = request.form.get('password')
 
-          if login and  password:
-                    user = User.query.filter_by(login=login).first()
+          if request.method == "POST":
+                    if login and  password:
+                              user = User.query.filter_by(login=login).first()
 
-                    if user and check_password_hash(user.password, password):
-                              login_user(user)
+                              if user and check_password_hash(user.password, password):
+                                        login_user(user)
 
-                              next_page = request.args.get('next')
-                              if next_page==None:
-                                        return redirect(url_for('index'))
+                                        next_page = request.args.get('next')
+                                        logged = True
+                                        if next_page==None:
+                                                  return redirect(url_for('index'))
+                                        else:
+                                                  return redirect(next_page)
+
                               else:
-                                        return redirect(next_page)
+                                        flash('Check login and password')
 
                     else:
-                              flash('Check login and password')
-
-          else:
-                    flash('Fill both login and password please')
+                              flash('Fill both login and password please')
           return render_template('login_page.html')
 
 
 @app.route('/logout',methods=['GET','POST'])
 @login_required
 def logout():
+          global logged
+
           logout_user()
+          logged = False
           return redirect(url_for('index'))
 
 
