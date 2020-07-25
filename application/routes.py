@@ -12,23 +12,31 @@ logged = False
 @app.route('/')
 @app.route('/index')
 def index():
-          return render_template('index.html')
+          global logged
+
+          return render_template('index.html',logged=logged)
 
 
 @app.route('/about')
 def about():
-          return render_template('about.html')
+          global logged
+
+          return render_template('about.html',logged=logged)
 
 
 @app.route('/all_posts')
 def all_posts():
-          return render_template('all_posts.html',articles=Article.query.all())
+          global logged
+
+          return render_template('all_posts.html',articles=Article.query.all(),logged=logged)
 
 
 @app.route('/new_post')
 @login_required
 def new_post():
-          return render_template('new_post.html')
+          global logged
+
+          return render_template('new_post.html',logged=logged)
 
 
 @app.route('/add_article',methods=['POST'])
@@ -68,7 +76,7 @@ def login_page():
 
                     else:
                               flash('Fill both login and password please')
-          return render_template('login_page.html')
+          return render_template('login_page.html',logged=logged)
 
 
 @app.route('/logout',methods=['GET','POST'])
@@ -83,6 +91,8 @@ def logout():
 
 @app.route('/register',methods=['GET','POST'])
 def register():
+          global logged
+
           login = request.form.get('login')
           password = request.form.get('password')
           password2 = request.form.get('password2')
@@ -101,7 +111,7 @@ def register():
 
                     return redirect(url_for('login_page'))
 
-          return render_template('register.html')
+          return render_template('register.html',logged=logged)
 
 
 @app.after_request

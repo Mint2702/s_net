@@ -9,7 +9,7 @@
 <body>
           <header>
                     <div id="log_reg">
-                              <a href="{{ url_for('login_page') }}">Log-in</a>
+                              {% block lg %}{% endblock %}
                     </div>
                     <div id="logo">
                               <div id="UniBlog">
@@ -24,7 +24,7 @@
                     </div>
           </header>
           <div id="showlog">
-                    {% block loged %}{% endblock %}
+                    <h2>{% block loged %}{% endblock %}</h2>
           </div>
           <div id="content">
                     {% block content %}{% endblock %}

@@ -3,11 +3,27 @@
 New user
 {% endblock %}
 
+{% block lg %}
+
+{% if logged==True %}
+<a href="{{ url_for('logout') }}">Logout</a>
+{% else %}
+<a href="{{ url_for('login_page') }}">Log-in</a>
+{% endif %}
+
+{% endblock %}
+
 {% block header %}
 New user
 {% endblock %}
 
 {% block loged %}
+
+{% if logged==True %}
+  Logged
+{% else %}
+  Not Logged
+{% endif %}
 
 {% endblock %}
 
