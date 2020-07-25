@@ -1,16 +1,19 @@
 {% extends 'base.html' %}
 {% block title %}
-New post
+UniBlog
 {% endblock %}
 
 {% block header %}
-New Post
+Main
 {% endblock %}
 
 {% block content %}
-All posts
+<a href="{{ url_for('new_post') }}">New post</a>
+<br>
+<a href="{{ url_for('all_posts') }}">All posts</a>
+<br>
 {% endblock %}
 
 {% block footer %}
-
+footer
 {% endblock %}
