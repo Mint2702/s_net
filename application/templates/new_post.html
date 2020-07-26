@@ -5,7 +5,7 @@ New post
 
 {% block lg %}
 
-{% if logged==True %}
+{% if user!=None %}
 <a href="{{ url_for('logout') }}">Logout</a>
 {% else %}
 <a href="{{ url_for('login_page') }}">Log-in</a>
@@ -19,8 +19,8 @@ New Post
 
 {% block loged %}
 
-{% if logged==True %}
-  Logged
+{% if user!=None %}
+  Logged - {{ user.login }}
 {% else %}
   Not Logged
 {% endif %}

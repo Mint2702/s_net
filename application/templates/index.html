@@ -6,7 +6,7 @@ UniBlog
 
 {% block lg %}
 
-{% if logged==True %}
+{% if user!=None %}
 <a href="{{ url_for('logout') }}">Logout</a>
 {% else %}
 <a href="{{ url_for('login_page') }}">Log-in</a>
@@ -20,7 +20,7 @@ Main
 
 {% block loged %}
 
-{% if logged==True %}
+{% if user!=None %}
   Logged - {{ user.login }}
 {% else %}
   Not Logged In
@@ -32,7 +32,7 @@ Main
 
 <a href="{{ url_for('all_posts') }}">All posts</a>
 <br>
-{% if logged %}
+{% if user %}
           <a href="{{ url_for('new_post') }}">New post</a>
 {% endif %}
 

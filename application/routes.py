@@ -7,55 +7,42 @@ from application import db, app
 from application.models import Article,User
 
 
-logged = False
 user = None
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-          global logged
-
-          return render_template('index.html',logged=logged, user=user)
+          return render_template('index.html', user=user)
 
 
 @app.route('/about')
 def about():
-          global logged
-
-          return render_template('about.html',logged=logged, user=user)
+          return render_template('about.html', user=user)
 
 
 @app.route('/all_posts')
 def all_posts():
-          global logged
-
           articles=Article.query.order_by(Article.date.desc()).all()
-          return render_template('all_posts.html',articles=articles,logged=logged, user=user)
+          return render_template('all_posts.html',articles=articles, user=user)
 
 
 @app.route('/new_post')
 @login_required
 def new_post():
-          global logged
-
-          return render_template('new_post.html',logged=logged, user=user)
+          return render_template('new_post.html', user=user)
 
 
 @app.route('/all_posts/<int:id>')
 def full_post(id):
-          global logged
-
           article = Article.query.get(id)
           user_name = User.query.filter_by(id=article.user_id).first()
-          return render_template('full_post.html',logged=logged,article=article, user=user,user_name=user_name.login)
+          return render_template('full_post.html',article=article, user=user,user_name=user_name.login)
 
 
 @app.route('/add_article',methods=['POST'])
 @login_required
 def add_article():
-          global user
-
           title = request.form['title']
           intro = request.form['intro']
           text = request.form['text']
@@ -75,9 +62,8 @@ def add_article():
 
 @app.route('/login',methods=['GET','POST'])
 def login_page():
-          global logged
-          global user
           global user_full
+          global user
 
           login = request.form.get('login')
           password = request.form.get('password')
@@ -101,23 +87,19 @@ def login_page():
 
                     else:
                               flash('Fill both login and password please')
-          return render_template('login_page.html',logged=logged)
+          return render_template('login_page.html',user=user)
 
 
 @app.route('/logout',methods=['GET','POST'])
 @login_required
 def logout():
-          global logged
-
           logout_user()
-          logged = False
+          user = None
           return redirect(url_for('index'))
 
 
 @app.route('/register',methods=['GET','POST'])
 def register():
-          global logged
-
           login = request.form.get('login')
           password = request.form.get('password')
           password2 = request.form.get('password2')
@@ -136,7 +118,7 @@ def register():
 
                     return redirect(url_for('login_page'))
 
-          return render_template('register.html',logged=logged)
+          return render_template('register.html',user=user)
 
 
 @app.after_request
