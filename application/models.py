@@ -5,6 +5,13 @@ from application import db,manager
 
 
 
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    login = db.Column(db.String(120), nullable=False, unique=True)
+    password = db.Column(db.String(240), nullable=False)
+    articles = db.relationship('Article', backref='user', lazy=True)
+
+
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title=db.Column(db.String(100),nullable=False)
@@ -12,16 +19,13 @@ class Article(db.Model):
     text=db.Column(db.Text,nullable=False)
     date=db.Column(db.DateTime,default=datetime.utcnow)
 
-    def __init__(self, title,intro,text):
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False)
+
+    def __init__(self, title,intro,text,user_id):
         self.title = title
         self.intro = intro
         self.text = text
-
-
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    login = db.Column(db.String(120), nullable=False, unique=True)
-    password = db.Column(db.String(240), nullable=False)
+        self.user_id = user_id
 
 
 @manager.user_loader

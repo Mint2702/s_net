@@ -10,6 +10,7 @@ from application.models import Article,User
 logged = False
 user = None
 
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -45,18 +46,22 @@ def new_post():
 def full_post(id):
           global logged
 
-          article=Article.query.get(id)
-          return render_template('full_post.html',logged=logged,article=article, user=user)
+          article = Article.query.get(id)
+          user_name = User.query.filter_by(id=article.user_id).first()
+          return render_template('full_post.html',logged=logged,article=article, user=user,user_name=user_name.login)
 
 
 @app.route('/add_article',methods=['POST'])
 @login_required
 def add_article():
-          title=request.form['title']
-          intro=request.form['intro']
-          text=request.form['text']
+          global user
 
-          article=Article(title=title,intro=intro,text=text)
+          title = request.form['title']
+          intro = request.form['intro']
+          text = request.form['text']
+          user_id = user.id
+
+          article = Article(title=title,intro=intro,text=text,user_id=user_id)
 
           try:
                     db.session.add(article)
@@ -72,6 +77,7 @@ def add_article():
 def login_page():
           global logged
           global user
+          global user_full
 
           login = request.form.get('login')
           password = request.form.get('password')
