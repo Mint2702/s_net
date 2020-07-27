@@ -72,7 +72,7 @@ def login_page():
                     if login and  password:
                               user = User.query.filter_by(login=login).first()
 
-                              if user and check_password_hash(user.password, password):
+                              if user and user.check_password(password):
                                         login_user(user)
 
                                         next_page = request.args.get('next')
@@ -93,6 +93,7 @@ def login_page():
 @app.route('/logout',methods=['GET','POST'])
 @login_required
 def logout():
+          global user
           logout_user()
           user = None
           return redirect(url_for('index'))
@@ -110,8 +111,8 @@ def register():
                     elif password != password2:
                               flash("passwords differ")
                     else:
-                              hash_pwd = generate_password_hash(password)
-                              new_user = User(login=login, password=hash_pwd)
+                              new_user = User(login=login)
+                              new_user.set_password(password)
 
                               db.session.add(new_user)
                               db.session.commit()
