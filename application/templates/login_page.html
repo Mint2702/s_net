@@ -34,14 +34,30 @@ Login
   {% endif %}
 {% endwith %}
 
-<form method="POST">
-          <input type="text" name="login">
-          <br>
-          <input type="password" name="password">
-          <br>
-          <a href="{{ url_for('register') }}">Register</a>
-          <input type="submit" value="Login">
-</form>
+<div ig="RegContainer">
+
+  <form method="POST" id="RegForm">
+
+    <div id="Reg">
+      <p>Don't have an account yet?</p>
+      <a href="{{ url_for('register') }}">Register</a>
+     </div>
+
+    <h4>Username</h4>
+    <br>
+    <input type="text" name="login">
+    <br>
+    <h4>Password</h4>
+    <br>
+    <input type="password" name="password">
+    <br>
+    <input type="submit" value="Login">
+
+ </form>
+
+</div>
+
+
 
 {% endblock %}
 
