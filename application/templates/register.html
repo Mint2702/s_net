@@ -35,16 +35,32 @@ New user
   {% endif %}
 {% endwith %}
 
-<form method="POST">
-          <input type="text" name="login">
-          <br>
-          <input type="password" name="password">
-          <br>
-          <input type="password" name="password2">
-          <br>
-          <a href="{{ url_for('login_page') }}">Login</a>
-          <input type="submit" value="Register">
-</form>
+<div id="RegContainer">
+
+  <form method="POST" id="RegForm">
+
+    <div id="Reg">
+      <p>Already have an account?</p>
+      <a href="{{ url_for('login_page') }}">Login</a>
+    </div>
+    <h4>Username</h4>
+    <br>
+    <input type="text" name="login">
+    <br>
+    <h4>Password</h4>
+    <br>
+    <input type="password" name="password">
+    <br>
+    <h4>Repeat password</h4>
+    <br>
+    <input type="password" name="password2">
+    <br>
+    
+    <input type="submit" value="Register">
+ </form>
+
+</div>
+
 {% endblock %}
 
 {% block footer %}

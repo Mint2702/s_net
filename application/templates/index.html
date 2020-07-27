@@ -30,11 +30,17 @@ Main
 
 {% block content %}
 
-<a href="{{ url_for('all_posts') }}">All posts</a>
-<br>
-{% if user %}
-          <a href="{{ url_for('new_post') }}">New post</a>
-{% endif %}
+<div id="indexA">
+
+  <a href="{{ url_for('all_posts') }}">See all posts</a>
+  <br>
+  <br>
+  {% if user %}
+            <a href="{{ url_for('new_post') }}">Create a new post</a>
+  {% endif %}
+
+</div>
+
 
 {% endblock %}
 
