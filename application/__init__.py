@@ -4,7 +4,7 @@ from flask_login import LoginManager
 
 app=Flask(__name__)
 app.secret_key = 'secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:@localhost/uniblog'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://dan:A27022002b@localhost/uniblog'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 manager = LoginManager(app)

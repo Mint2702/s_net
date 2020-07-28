@@ -37,7 +37,7 @@ def new_post():
 def full_post(id):
           article = Article.query.get(id)
           user_name = User.query.filter_by(id=article.user_id).first()
-          return render_template('full_post.html',article=article, user=user,user_name=user_name.login)
+          return render_template('full_post.html',article=article, user=user,user_name=user_name.login,user_uni=user_name.university)
 
 
 @app.route('/add_article',methods=['POST'])
@@ -102,16 +102,17 @@ def logout():
 @app.route('/register',methods=['GET','POST'])
 def register():
           login = request.form.get('login')
+          university = request.form.get('university')
           password = request.form.get('password')
           password2 = request.form.get('password2')
 
           if request.method == "POST":
-                    if not(login or password or password2):
+                    if not(login or password or password2 or university):
                               flash("Please fill all fields")
                     elif password != password2:
                               flash("passwords differ")
                     else:
-                              new_user = User(login=login)
+                              new_user = User(login=login,university = university)
                               new_user.set_password(password)
 
                               db.session.add(new_user)

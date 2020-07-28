@@ -10,6 +10,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     login = db.Column(db.String(120), nullable=False, unique=True)
     password_hash = db.Column(db.String(520), nullable=False)
+    university = db.Column(db.String(210), nullable=False)
     articles = db.relationship('Article', backref='user', lazy=True)
 
     def set_password(self, password):
