@@ -121,8 +121,9 @@ def register():
                     return redirect(url_for('login_page'))
 
           return render_template('register.html',user=user)
+          
 
-
+@login_required
 @app.route('/full_user')
 def user_full():
     global user
