@@ -123,6 +123,12 @@ def register():
           return render_template('register.html',user=user)
 
 
+@app.route('/full_user')
+def user_full():
+    global user
+    return render_template('user_full.html',user=user)
+
+
 @app.after_request
 def redirect_to_signin(response):
           if response.status_code == 401:

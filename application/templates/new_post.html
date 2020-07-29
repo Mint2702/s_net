@@ -20,7 +20,9 @@ New Post
 {% block loged %}
 
 {% if user!=None %}
-  Logged - {{ user.login }}
+<div id="User_page">
+  <a href="{{ url_for('user_full') }}">Logged - {{ user.login }}</a>
+</div>
 {% else %}
   Not Logged
 {% endif %}

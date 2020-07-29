@@ -194,3 +194,14 @@ footer{
           color: red;
           text-decoration: none;
 }
+
+#User_page a{
+          text-decoration: none;
+          font-size: 20px;
+          color: #8eeded;
+}
+
+#User_page a:hover{
+    color: red;
+    text-decoration: none;
+}

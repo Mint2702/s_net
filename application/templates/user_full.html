@@ -1,36 +1,37 @@
 {% extends 'base.html' %}
 {% block title %}
-About
+
+{{ user.login }}
+
 {% endblock %}
 
 {% block lg %}
 
-{% if user!=None %}
 <a href="{{ url_for('logout') }}">Logout</a>
-{% else %}
-<a href="{{ url_for('login_page') }}">Log-in</a>
-{% endif %}
 
 {% endblock %}
 
 {% block header %}
-About
+
+{{ user.login }}
+
 {% endblock %}
 
 {% block loged %}
 
-{% if user!=None %}
 <div id="User_page">
-  <a href="{{ url_for('user_full') }}">Logged - {{ user.login }}</a>
+    <a href="{{ url_for('user_full') }}">Logged - {{ user.login }}</a>
 </div>
-{% else %}
-  Not Logged In
-{% endif %}
 
 {% endblock %}
 
 {% block content %}
-About this site
+
+<div id='fullpost'>
+          <p>Login - {{ user.login }}</p>
+          <p><b>University: {{ user.university }}</b></p>
+</div>
+
 {% endblock %}
 
 {% block footer %}
